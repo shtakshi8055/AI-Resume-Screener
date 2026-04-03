@@ -1,0 +1,6 @@
+streamlit
+pandas
+numpy
+scikit-learn
+matplotlib
+pymupdf==1.24.0
