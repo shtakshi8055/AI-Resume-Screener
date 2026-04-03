@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pymupdf
+from PyPDF2 import PdfReader
 import re
 import matplotlib.pyplot as plt
 
@@ -45,9 +45,9 @@ def clean_text(text):
 
 def extract_text_from_pdf(uploaded_file):
     text = ""
-    doc = pymupdf.open(stream=uploaded_file.read(), filetype="pdf")
-    for page in doc:
-        text += page.get_text()
+    reader = PdfReader(uploaded_file)
+    for page in reader.pages:
+        text += page.extract_text() or ""
     return text
 
 def extract_skills(text, skills_list):
