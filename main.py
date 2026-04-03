@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import fitz
+import pymupdf
 import re
 import matplotlib.pyplot as plt
 
@@ -45,7 +45,7 @@ def clean_text(text):
 
 def extract_text_from_pdf(uploaded_file):
     text = ""
-    doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
+    doc = pymupdf.open(stream=uploaded_file.read(), filetype="pdf")
     for page in doc:
         text += page.get_text()
     return text
