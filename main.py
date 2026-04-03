@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from PyPDF2 import PdfReader
+import pdfplumber
 import re
 import matplotlib.pyplot as plt
 
@@ -45,9 +45,9 @@ def clean_text(text):
 
 def extract_text_from_pdf(uploaded_file):
     text = ""
-    reader = PdfReader(uploaded_file)
-    for page in reader.pages:
-        text += page.extract_text() or ""
+    with pdfplumber.open(uploaded_file) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text() or ""
     return text
 
 def extract_skills(text, skills_list):
