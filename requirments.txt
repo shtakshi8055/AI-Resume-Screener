@@ -3,4 +3,4 @@ pandas
 numpy
 scikit-learn
 matplotlib
-pymupdf
+pymupdf==1.24.0
